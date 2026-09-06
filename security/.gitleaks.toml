@@ -1,0 +1,33 @@
+# Gitleaks configuration.
+# Extends the default ruleset rather than replacing it, then adds
+# rules for the credential shapes this stack actually uses.
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "aws-access-key-id"
+description = "AWS Access Key ID"
+regex = '''(A3T[A-Z0-9]|AKIA|AGPA|AROA|ASIA)[A-Z0-9]{16}'''
+tags = ["aws", "credentials"]
+
+[[rules]]
+id = "kubeconfig-token"
+description = "Kubeconfig bearer token"
+regex = '''(?i)token:\s*[a-z0-9\-\._~\+\/]{20,}'''
+tags = ["kubernetes", "credentials"]
+
+[[rules]]
+id = "terraform-tfvars-secret"
+description = "Secret assigned in a tfvars file"
+regex = '''(?i)(password|secret|token|api_key)\s*=\s*"[^"]{8,}"'''
+path = '''\.tfvars$'''
+tags = ["terraform", "credentials"]
+
+[allowlist]
+description = "Paths that legitimately contain credential-shaped strings"
+paths = [
+  '''security/\.gitleaks\.toml''',   # this file, which contains the patterns
+  '''(.*?)(test|spec|fixture)(.*?)''',
+  '''docs/''',
+]

@@ -1,0 +1,16 @@
+# ZAP baseline alert filter.
+# Format: <rule-id>	<WARN|IGNORE|FAIL>	<comment>
+#
+# Anything not listed here defaults to WARN. Only findings that are
+# genuinely not applicable to a headless JSON API are set to IGNORE,
+# and each one carries a reason - blanket suppression is how DAST
+# stages quietly stop being useful.
+
+10015	IGNORE	Re-examine Cache-control - no authenticated content served
+10020	IGNORE	Anti-clickjacking header - JSON API renders no frames
+10021	WARN	X-Content-Type-Options missing - should be fixed
+10038	IGNORE	CSP header - no HTML is returned by this service
+10063	WARN	Permissions Policy header
+10096	IGNORE	Timestamp disclosure - health endpoint returns no timestamps
+10109	WARN	Modern web application check
+90004	IGNORE	Site Isolation - not applicable to a JSON API
