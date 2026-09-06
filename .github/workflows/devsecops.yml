@@ -186,7 +186,7 @@ jobs:
           done
 
       - name: ZAP baseline scan
-        uses: zaproxy/action-baseline@v0.12.0
+        uses: zaproxy/action-baseline@v0.15.0
         with:
           target: http://localhost:8080
           rules_file_name: security/zap-rules.tsv
