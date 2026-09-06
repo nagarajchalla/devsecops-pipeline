@@ -1,5 +1,7 @@
 # DevSecOps Pipeline
 
+![DevSecOps Pipeline](https://github.com/Nagarajchalla/devsecops-pipeline/actions/workflows/devsecops.yml/badge.svg)
+
 A working shift-left security pipeline built on GitHub Actions. Every stage runs on
 push, every finding lands in the GitHub Security tab as SARIF, and the deploy gate
 blocks on the failures that actually matter.
